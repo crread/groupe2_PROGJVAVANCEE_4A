@@ -76,7 +76,7 @@ MonoBehaviour:
   explosion1: {fileID: 8359244298945936856}
   explosion2: {fileID: 8806821914483756840}
   explosionCooldown: 2
-  explosionDuration: 0.5
+  explosionDuration: 0.3
 --- !u!65 &2981031409376561573
 BoxCollider:
   m_ObjectHideFlags: 0

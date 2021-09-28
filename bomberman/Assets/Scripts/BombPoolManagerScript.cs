@@ -21,13 +21,14 @@ public class BombPoolManagerScript : MonoBehaviour
 {
     [SerializeField] private int length;
 
-    private readonly BombManager[] _bombPool = new BombManager[10];
+    private BombManager[] _bombPool;
 
     [SerializeField] private GameObject bombPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
+        _bombPool = new BombManager[length];
         for (var i = 0; i < length; i++)
         {
             _bombPool[i] = new BombManager(Instantiate(bombPrefab));
@@ -44,7 +45,9 @@ public class BombPoolManagerScript : MonoBehaviour
                 bombManager.BombScript.Pooled = true;
                 return bombManager.Bomb;
             }
+            
         }
+
         return default;
     }
         

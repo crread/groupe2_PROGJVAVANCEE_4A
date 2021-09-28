@@ -1,20 +1,22 @@
-using System;
+
 using System.Collections;
 using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public static int PlayerCount { get; set; }
+    private static int PlayerCount { get; set; }
+
+    private bool _anotherDeath = false;
+
+    private readonly WaitForSeconds _waitForPlayer = new WaitForSeconds(1f);
         
-    private readonly WaitForSeconds _waitForPlayer = new WaitForSeconds(2);
-        
-    public static GameManagerScript instance;
+    public static GameManagerScript Instance;
 
     private void Awake()
     {
-        if (!instance)
+        if (!Instance)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -23,34 +25,38 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
-    public void AddPlayer()
+    public static void AddPlayer()
     {
         PlayerCount++;
     }
 
-    public void RemovePlayer(int playerNumber)
+    public void RemovePlayer()
     {
         PlayerCount--;
-        StartCoroutine(WaitForPlayer());
+        
         if (PlayerCount <= 0)
         {
+            Instance._anotherDeath = true;
             Draw();
+            return;
         }
-
-        if (PlayerCount == 1)
-        {
-            Victory(playerNumber);
-        }
+        StartCoroutine(WaitForPlayer());
+        if (PlayerCount != 1) return;
+        if (Instance._anotherDeath) return;
+        
+        Victory();
     }
 
-    private void Draw()
+    private static void Draw()
     {
-            
+        Debug.Log("Draw !");
+        Time.timeScale = 0f;
     }
 
-    private void Victory(int playerNumber)
+    private static void Victory()
     {
-            
+        Debug.Log("victory !");
+        Time.timeScale = 0f;
     }
 
     private IEnumerator WaitForPlayer()

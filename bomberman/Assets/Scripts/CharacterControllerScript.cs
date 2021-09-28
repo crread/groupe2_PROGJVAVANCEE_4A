@@ -7,15 +7,13 @@ public class CharacterControllerScript : MonoBehaviour
         
     [SerializeField] private Transform playerMesh;
 
-    [SerializeField] private int playerNumber;
-
     [SerializeField] private float playerSpeed;
 
     [SerializeField] private BombPoolManagerScript bombPool;
 
     private void Start()
     {
-        GameManagerScript.instance.AddPlayer();
+        GameManagerScript.AddPlayer();
     }
 
     public void MoveForward()
@@ -45,6 +43,7 @@ public class CharacterControllerScript : MonoBehaviour
     public void PlaceBomb()
     {
         var bomb = bombPool.DePooling();
+        if (bomb == default) return;
         var position = transform.position;
         bomb.transform.position = new Vector3(Mathf.Round(position.x), 0, Mathf.Round(position.z));
         bomb.SetActive(true);
@@ -53,6 +52,6 @@ public class CharacterControllerScript : MonoBehaviour
     public void Death()
     {
         gameObject.SetActive(false);
-        GameManagerScript.instance.RemovePlayer(playerNumber);
+        GameManagerScript.Instance.RemovePlayer();
     }
 }

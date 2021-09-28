@@ -804,6 +804,8 @@ GameObject:
   - component: {fileID: 155141259}
   - component: {fileID: 155141261}
   - component: {fileID: 155141262}
+  - component: {fileID: 155141263}
+  - component: {fileID: 155141264}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -865,6 +867,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c91ed767e887447a706daf3fbee3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &155141263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155141258}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ddd91238065eda43bd930aeb96a9186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 586184484}
+--- !u!114 &155141264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155141258}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ddd91238065eda43bd930aeb96a9186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2021078201}
 --- !u!1001 &170976344
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9441,7 +9469,7 @@ PrefabInstance:
       objectReference: {fileID: 155141259}
     - target: {fileID: 687294561925887313, guid: 3c42fb4df3861b448a46c59d4c1e8b97, type: 3}
       propertyPath: playerSpeed
-      value: 2.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 687294561925887313, guid: 3c42fb4df3861b448a46c59d4c1e8b97, type: 3}
       propertyPath: playerNumber
@@ -9514,7 +9542,7 @@ PrefabInstance:
       objectReference: {fileID: 155141259}
     - target: {fileID: 1697685893435990121, guid: 3b5f5e0425e3259499e27edb1be55fb9, type: 3}
       propertyPath: playerSpeed
-      value: 2.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 1697685893435990121, guid: 3b5f5e0425e3259499e27edb1be55fb9, type: 3}
       propertyPath: playerNumber
