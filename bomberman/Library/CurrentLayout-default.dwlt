@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_MinSize: {x: 578, y: 492}
   m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
-  controlID: 117
+  controlID: 52
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 303, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 60
+  controlID: 81
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 303, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 61
+  controlID: 82
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -397,9 +397,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: cc7c0000
-      m_LastClickedID: 31948
-      m_ExpandedIDs: faeee6ff00efe6ff027effff6c7b0000
+      m_SelectedIDs: e8f7ffff
+      m_LastClickedID: -2072
+      m_ExpandedIDs: 4ad723ffbcc428ffc2d628ffd000b2ff6e40beffe8f7ffff52fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -459,9 +459,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 4.989582, y: -16.419424, z: -4.056018}
+    m_Target: {x: -4.646724, y: 0.9037191, z: 2.245114}
     speed: 2
-    m_Value: {x: 4.989582, y: -16.419424, z: -4.056018}
+    m_Value: {x: -4.646724, y: 0.9037191, z: 2.245114}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -508,13 +508,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.18393429, y: -0.7446802, z: 0.59932613, w: -0.22831383}
+    m_Target: {x: 0.3499932, y: -0.40666145, z: 0.17230421, w: 0.82592434}
     speed: 2
-    m_Value: {x: -0.18396194, y: -0.74479216, z: 0.59941626, w: -0.22834817}
+    m_Value: {x: 0.35004422, y: -0.40672073, z: 0.17232932, w: 0.82604474}
   m_Size:
-    m_Target: 12.979965
+    m_Target: 3.0866132
     speed: 2
-    m_Value: 12.979965
+    m_Value: 3.0866132
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -577,22 +577,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scrips
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Scrips
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\maxo9\Documents\GitHub\groupe2_PROGJVAVANCEE_4A\bomberman
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 5a7d0000
-    m_LastClickedID: 32090
-    m_ExpandedIDs: 000000005a7d00005c7d000000ca9a3b
+    m_SelectedIDs: 2a0b0100
+    m_LastClickedID: 68394
+    m_ExpandedIDs: 0000000090fa000092fa0000240b010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -620,7 +620,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005a7d00005c7d0000
+    m_ExpandedIDs: 0000000090fa000092fa0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

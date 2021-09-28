@@ -7,22 +7,21 @@ namespace Scrips
     internal struct BombManager
     {
         public GameObject Bomb { get; }
-        public bool Pooled { get; set; }
+        public BombScript BombScript { get; }
+        
 
-        public BombManager(GameObject bomb, int index, bool pooled, BombPoolManager poolManager)
+        public BombManager(GameObject bomb)
         {
             Bomb = bomb;
             Bomb.SetActive(false);
-            Bomb.GetComponent<BombScript>().PoolManager = poolManager;
-            Pooled = pooled;
+            BombScript = Bomb.GetComponent<BombScript>();
+            BombScript.Pooled = false;
         }
     }
 
     public class BombPoolManager : MonoBehaviour
     {
         [SerializeField] private int length;
-
-        [SerializeField] private int lastPooled;
 
         private readonly BombManager[] _bombPool = new BombManager[10];
 
@@ -33,31 +32,23 @@ namespace Scrips
         {
             for (var i = 0; i < length; i++)
             {
-                _bombPool[i] = new BombManager(Instantiate(bombPrefab), i, false, this);
+                _bombPool[i] = new BombManager(Instantiate(bombPrefab));
             }
         }
 
-        public GameObject Pooling()
+        public GameObject DePooling()
         {
-            if (lastPooled == length - 1)
-            {
-                lastPooled = 0;
-            }
-
             for (var i = 0; i < length; i++)
             {
-                var bombManager = _bombPool[lastPooled];
-                if (!bombManager.Pooled)
+                var bombManager = _bombPool[i];
+                if (!bombManager.BombScript.Pooled)
                 {
-                    Debug.Log("bomb pooled");
-                    bombManager.Pooled = true;
-                    lastPooled++;
+                    bombManager.BombScript.Pooled = true;
                     return bombManager.Bomb;
                 }
-
-                lastPooled++;
             }
-            return null;
+            return default;
         }
+        
     }
 }
