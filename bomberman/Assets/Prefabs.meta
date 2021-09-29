@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 375e074169323ef43a91df48f1e17707
+=======
+guid: 422eb7bf701622b44a634b8af9240ee7
+>>>>>>> test_merge
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
