@@ -51,12 +51,14 @@ public class GameManagerScript : MonoBehaviour
     {
         Debug.Log("Draw !");
         Time.timeScale = 0f;
+        EndGameHandle.LoseScreen();
     }
 
     private static void Victory()
     {
         Debug.Log("victory !");
         Time.timeScale = 0f;
+        EndGameHandle.VictoryScreen();
     }
 
     private IEnumerator WaitForPlayer()
