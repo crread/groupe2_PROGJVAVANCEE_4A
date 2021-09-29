@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
-    private static int PlayerCount { get; set; }
+    private static int _playerCount;
 
-    private bool _anotherDeath = false;
+    private bool _anotherDeath;
 
     private readonly WaitForSeconds _waitForPlayer = new WaitForSeconds(1f);
         
@@ -27,24 +27,29 @@ public class GameManagerScript : MonoBehaviour
 
     public static void AddPlayer()
     {
-        PlayerCount++;
+        _playerCount++;
     }
 
     public void RemovePlayer()
     {
-        PlayerCount--;
+        _playerCount--;
         
-        if (PlayerCount <= 0)
+        if (_playerCount <= 0)
         {
             Instance._anotherDeath = true;
             Draw();
             return;
         }
+
+        if (_playerCount > 1) return;
+        if (_playerCount != 1) return;
         StartCoroutine(WaitForPlayer());
-        if (PlayerCount != 1) return;
-        if (Instance._anotherDeath) return;
-        
+        if (Instance._anotherDeath)
+        {
+            return;
+        }
         Victory();
+
     }
 
     private static void Draw()

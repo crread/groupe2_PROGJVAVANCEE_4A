@@ -48,7 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 687294561925887314}
   playerMesh: {fileID: 686545274552867150}
+  playerSpeed: 3.5
   bombPool: {fileID: 0}
+  bombCooldown: 0.8
 --- !u!54 &687294561925887315
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -63,7 +65,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 36
+  m_Constraints: 116
   m_CollisionDetection: 1
 --- !u!1 &687294562458526147
 GameObject:
@@ -74,7 +76,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 687294562458526172}
-  - component: {fileID: 687294562458526173}
+  - component: {fileID: 3390332883135034559}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
@@ -96,8 +98,8 @@ Transform:
   m_Father: {fileID: 687294561925887314}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &687294562458526173
-BoxCollider:
+--- !u!136 &3390332883135034559
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,9 +108,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 1, z: 0.8}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Radius: 0.45
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &687294561926282458
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -30,22 +30,39 @@ public class BombScript : MonoBehaviour
     {
         if (_currentBombCooldown <= 0 && bomb.activeSelf)
         {
-            bomb.SetActive(false);
-            explosion1.SetActive(true);
-            explosion2.SetActive(true);
-            _currentExplosionCooldown = explosionDuration;
+            Explode();
         }
         else if (_currentExplosionCooldown <= 0 && (explosion1.activeSelf || explosion2.activeSelf))
         {
-            explosion1.SetActive(false);
-            explosion2.SetActive(false);
-            gameObject.SetActive(false);
-            Pooled = false;
+            Remove();
         }
         else
         {
             _currentExplosionCooldown -= Time.deltaTime;
             _currentBombCooldown -= Time.deltaTime;
         }
+    }
+
+    public void Trigger()
+    {
+        Debug.Log("triggered");
+        _currentBombCooldown = 0;
+        Explode();
+    }
+
+    private void Explode()
+    {
+        bomb.SetActive(false);
+        explosion1.SetActive(true);
+        explosion2.SetActive(true);
+        _currentExplosionCooldown = explosionDuration;
+    }
+
+    private void Remove()
+    {
+        explosion1.SetActive(false);
+        explosion2.SetActive(false);
+        gameObject.SetActive(false);
+        Pooled = false;
     }
 }
