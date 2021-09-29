@@ -4,8 +4,9 @@ public class PlayerControllerScript : MonoBehaviour
 {
     [SerializeField] private CharacterControllerScript player1;
     [SerializeField] private CharacterControllerScript player2;
-        
 
+    private bool _paused;
+    
     // Update is called once per frame
     void Update()
     {
@@ -36,6 +37,12 @@ public class PlayerControllerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             player1.PlaceBomb();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            _paused = !_paused;
+            PauseMenu.OnPauseMenu(_paused);
         }
     }
         

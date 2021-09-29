@@ -26,6 +26,10 @@ public class CharacterControllerScript : MonoBehaviour
         if (_currentBombCooldown > 0)
         {
             _currentBombCooldown -= Time.deltaTime;
+            if (_currentBombCooldown <= 0)
+            {
+                UI_HUD.SetBombAvailable();
+            }
         }
     }
 
@@ -68,6 +72,7 @@ public class CharacterControllerScript : MonoBehaviour
         if (!pooled) return;
         bomb.transform.position = bombPosition;
         bomb.SetActive(true);
+        UI_HUD.SetBombUnavailable();
     }
 
     public void Death()
