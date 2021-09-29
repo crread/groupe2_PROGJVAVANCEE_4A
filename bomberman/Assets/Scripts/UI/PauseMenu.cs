@@ -5,12 +5,20 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameisPaused = false;
-    public GameObject pauseMenuUI;
+    public static GameObject pauseMenuUI;
 
-    public void OnPauseMenu()
+    private void Awake()
     {
-        Debug.Log("La touche pause est appuyée");
-        if (GameisPaused)
+        pauseMenuUI = this.gameObject;
+        this.gameObject.SetActive(false);
+    }
+    /// <summary>
+    /// Methode a appeler pour faire apparaitre le menu Pause
+    /// </summary>
+    /// <param name="_status"></param>
+    public static void OnPauseMenu(bool _status)
+    {
+        if (!_status)
         {
             Resume();
         }
@@ -19,8 +27,7 @@ public class PauseMenu : MonoBehaviour
             Pause();
         }
     }
-
-    public void Resume()
+    private static void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -29,7 +36,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Pause()
+    static void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
@@ -37,15 +44,16 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-
-    public void LoadMenu()
+    /// <summary>
+    /// Methode public a placer dans l'event du boutton UI
+    /// </summary>
+    public void Button_Resume()
     {
-        Time.timeScale = 1f;
-        GameisPaused = false;
-
-        SceneManager.LoadScene("Menu");
+        Resume();
     }
-
+    /// <summary>
+    /// Quitte le jeu
+    /// </summary>
     public void QuitGame()
     {
         Debug.Log("Application quit");

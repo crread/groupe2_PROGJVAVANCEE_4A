@@ -51,7 +51,7 @@ public class GameManagerScript : MonoBehaviour
     {
         Debug.Log("Draw !");
         Time.timeScale = 0f;
-        EndGameHandle.LoseScreen();
+        EndGameHandle.DrawScreen();
     }
 
     private static void Victory()

@@ -1,79 +1,51 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/// <summary>
+/// Classe a recuperer dans l'inspecteur afin d'affilier les methodes aux boutons
+/// </summary>
 public class LevelLoader : MonoBehaviour
 {
-    public Animator transition;
-    public float transitionTime = 1f;
 
+    [SerializeField] private Animator transition;
+    [SerializeField] private float transitionTime = 1f;
+
+    /// <summary>
+    /// Permet de charger une nouvelle partie depuis le menu principale
+    /// </summary>
     public void LoadNewGame()
     {
-       StartCoroutine(LoadLevel(1)); // Ou SceneManager.GetActiveScene().buildIndex + 1; pour la scene qui suit dans le build manager
+        SetTimeScaleTo1();
+        StartCoroutine(LoadLevel(1));
     }
-
+    /// <summary>
+    /// Permet de charger une nouvelle partie apresen avoir termine une
+    /// </summary>
     public void LoadWinNewGame()
     {
-        //CheckTimeScale();
-        Time.timeScale = 1f;
-        //PauseMenu.GameisPaused = false;
-        //RoomManager.NombreActuelRoom = 0;
-        //RoomManager.instance.NombreMaxRoom += 2;
-       // RoomManager.instance.stopGenerate = false;
+        SetTimeScaleTo1();
         StartCoroutine(LoadLevel(1));
-        //EndGameHandle.done = false;
     }
-    public void LoadLoseNewGame()
-    {
-        //CheckTimeScale();
-        Time.timeScale = 1f;
-        PauseMenu.GameisPaused = false;
-        //RoomManager.NombreActuelRoom = 0;
-        //RoomManager.instance.NombreMaxRoom = 6;
-        //RoomManager.instance.stopGenerate = false;
-        StartCoroutine(LoadLevel(1));
-        EndGameHandle.done = false;
-    }
-    public void LoadLevelFromASave()
-    {
-        StartCoroutine(LoadLevel(2)); // Ou SceneManager.GetActiveScene().buildIndex + 1; pour la scene qui suit dans le build manager
-        EndGameHandle.done = false;
-    }
+    /// <summary>
+    /// Permet de charger le menu principale
+    /// </summary>
     public void LoadMainMenu()
     {
-        CheckTimeScale();
+        SetTimeScaleTo1();
         StartCoroutine(LoadLevel(0));
-        //EndGameHandle.done = false;
     }
-
-    public void LoadScene()
-    {
-        ObjectLoaderHelper.loadScene = true;
-    }
-
-    public void MainScene()
-    {
-        ObjectLoaderHelper.loadScene = false;
-    }
-    public void NewGame()
-    {
-        ObjectLoaderHelper.instance.fileToLoad = null;
-    }
+    /// <summary>
+    /// Verifie que le temps est bien retourne a la normal
+    /// </summary>
     public void SetTimeScaleTo1()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
     }
-    //public void FromSave()
-    //{
-    //    ObjectLoaderHelper.instance.fileToLoad = Application.persistentDataPath + SaveManager.directory + SaveManager.saveFilename;
-    //}
-    //public void FromEditor()
-    //{
-    //    ObjectLoaderHelper.instance.fileToLoad = Application.persistentDataPath + SaveManager.directory + SaveManager.editorFilename;
-    //}
-
-
-
+    /// <summary>
+    /// Permet de jouer une animation de transition avant de charger un niveau
+    /// </summary>
+    /// <param name="_levelIndex"></param>
+    /// <returns></returns>
     IEnumerator LoadLevel(int _levelIndex)
     {
         //Play Animation
@@ -81,15 +53,5 @@ public class LevelLoader : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(_levelIndex);
-    }
-    void CheckTimeScale()
-    {
-        Time.timeScale = 1f;
-        //PauseMenu.GameisPaused = false;
-
-    }
-    public void MainMenu()
-    {
-        SceneManager.LoadScene(0);
     }
 }
