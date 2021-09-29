@@ -11,9 +11,21 @@ public class CharacterControllerScript : MonoBehaviour
 
     [SerializeField] private BombPoolManagerScript bombPool;
 
+    [SerializeField] private float bombCooldown;
+
+    private float _currentBombCooldown;
+
     private void Start()
     {
         GameManagerScript.AddPlayer();
+    }
+
+    private void Update()
+    {
+        if (_currentBombCooldown > 0)
+        {
+            _currentBombCooldown -= Time.deltaTime;
+        }
     }
 
     public void MoveForward()
@@ -42,6 +54,8 @@ public class CharacterControllerScript : MonoBehaviour
 
     public void PlaceBomb()
     {
+        if (_currentBombCooldown > 0) return;
+        _currentBombCooldown = bombCooldown;
         var bomb = bombPool.DePooling();
         if (bomb == default) return;
         var position = transform.position;
