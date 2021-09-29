@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class CharacterControllerScript : MonoBehaviour
@@ -56,10 +57,16 @@ public class CharacterControllerScript : MonoBehaviour
     {
         if (_currentBombCooldown > 0) return;
         _currentBombCooldown = bombCooldown;
-        var bomb = bombPool.DePooling();
-        if (bomb == default) return;
         var position = transform.position;
-        bomb.transform.position = new Vector3(Mathf.Round(position.x), 0, Mathf.Round(position.z));
+        var bombPosition = new Vector3(Mathf.Round(position.x), 0, Mathf.Round(position.z));
+        if (bombPool.BombPool
+            .Any(manager => manager.Bomb.transform.position == bombPosition && manager.Bomb.activeSelf))
+        {
+            return;
+        }
+        var pooled = bombPool.DePooling(out var bomb);
+        if (!pooled) return;
+        bomb.transform.position = bombPosition;
         bomb.SetActive(true);
     }
 

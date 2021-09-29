@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-internal readonly struct BombManager
+public readonly struct BombManager
 {
     public GameObject Bomb { get; }
     public BombScript BombScript { get; }
@@ -21,34 +21,32 @@ public class BombPoolManagerScript : MonoBehaviour
 {
     [SerializeField] private int length;
 
-    private BombManager[] _bombPool;
+    public BombManager[] BombPool { get; set; }
 
     [SerializeField] private GameObject bombPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        _bombPool = new BombManager[length];
+        BombPool = new BombManager[length];
         for (var i = 0; i < length; i++)
         {
-            _bombPool[i] = new BombManager(Instantiate(bombPrefab));
+            BombPool[i] = new BombManager(Instantiate(bombPrefab));
         }
     }
 
-    public GameObject DePooling()
+    public bool DePooling(out GameObject bomb)
     {
         for (var i = 0; i < length; i++)
         {
-            var bombManager = _bombPool[i];
-            if (!bombManager.BombScript.Pooled)
-            {
-                bombManager.BombScript.Pooled = true;
-                return bombManager.Bomb;
-            }
-            
+            var bombManager = BombPool[i];
+            if (bombManager.BombScript.Pooled) continue;
+            bombManager.BombScript.Pooled = true;
+            bomb =  bombManager.Bomb;
+            return true;
         }
-
-        return default;
+        bomb = null;
+        return false;
     }
         
 }
