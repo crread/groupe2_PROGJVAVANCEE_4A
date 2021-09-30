@@ -26,30 +26,29 @@ public class GameManagerScript : MonoBehaviour
         
     }
 
+    //function to update the player count
     public static void AddPlayer()
     {
         _playerCount++;
     }
 
+    //remove a player from the list and check remaining players for the end of the game
     public void RemovePlayer()
     {
         _playerCount--;
-        Debug.Log("mon compteur de joueur" + _playerCount);
+        //no more player = draw
         if (_playerCount <= 0)
         {
             Instance._anotherDeath = true;
             Draw();
             return;
         }
-
+        
         if (_playerCount > 1) return;
+        //only 1 player remaining = victory
         if (_playerCount != 1) return;
         StartCoroutine(WaitForPlayer());
-        if (Instance._anotherDeath)
-        {
-            return;
-        }
-        Victory();
+        
 
     }
 
@@ -72,6 +71,11 @@ public class GameManagerScript : MonoBehaviour
     private IEnumerator WaitForPlayer()
     {
         yield return _waitForPlayer;
+        if (Instance._anotherDeath)
+        {
+            yield break;
+        }
+        Victory();
     }
         
 }

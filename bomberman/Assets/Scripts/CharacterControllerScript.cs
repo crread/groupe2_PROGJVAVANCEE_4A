@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 
+
 public class CharacterControllerScript : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
@@ -12,6 +13,7 @@ public class CharacterControllerScript : MonoBehaviour
 
     [SerializeField] private BombPoolManagerScript bombPool;
 
+    //cooldown between placing 2 bombs
     [SerializeField] private float bombCooldown;
 
     private float _currentBombCooldown;
@@ -23,13 +25,11 @@ public class CharacterControllerScript : MonoBehaviour
 
     private void Update()
     {
+        
+        //update bomb cooldown
         if (_currentBombCooldown > 0)
         {
             _currentBombCooldown -= Time.deltaTime;
-            if (_currentBombCooldown <= 0)
-            {
-                UI_HUD.SetBombAvailable();
-            }
         }
     }
 
@@ -62,17 +62,20 @@ public class CharacterControllerScript : MonoBehaviour
         if (_currentBombCooldown > 0) return;
         _currentBombCooldown = bombCooldown;
         var position = transform.position;
+        //position the bomb at the center of the tile
         var bombPosition = new Vector3(Mathf.Round(position.x), 0, Mathf.Round(position.z));
+        //check if a bomb is already on the tile
         if (bombPool.BombPool
             .Any(manager => manager.Bomb.transform.position == bombPosition && manager.Bomb.activeSelf))
         {
             return;
         }
+        //try to retrieve a bomb from the pool
         var pooled = bombPool.DePooling(out var bomb);
         if (!pooled) return;
+        //place the bomb and active it
         bomb.transform.position = bombPosition;
         bomb.SetActive(true);
-        UI_HUD.SetBombUnavailable();
     }
 
     public void Death()
