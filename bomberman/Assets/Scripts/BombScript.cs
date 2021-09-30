@@ -9,9 +9,15 @@ public class BombScript : MonoBehaviour
 
     [SerializeField] private GameObject explosion2;
 
+    [SerializeField] private ParticleSystem explode1;
+    
+    [SerializeField] private ParticleSystem explode2;
+
     [SerializeField] private float explosionCooldown;
 
     [SerializeField] private float explosionDuration;
+
+    [SerializeField] private AudioSource sound;
 
     public bool Pooled { get; set; }
 
@@ -50,11 +56,15 @@ public class BombScript : MonoBehaviour
         Explode();
     }
 
-    private void Explode()
+    private void Explode() // FBI OPEN-UP !
     {
         bomb.SetActive(false);
         explosion1.SetActive(true);
         explosion2.SetActive(true);
+        explode1.Play();
+        explode2.Play();
+        sound = GetComponent<AudioSource>();
+        sound.Play();
         _currentExplosionCooldown = explosionDuration;
     }
 

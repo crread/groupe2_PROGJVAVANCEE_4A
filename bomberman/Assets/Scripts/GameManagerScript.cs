@@ -23,6 +23,7 @@ public class GameManagerScript : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("Il existe deja une instance de GameManager");
         }
+        
     }
 
     public static void AddPlayer()
@@ -33,7 +34,7 @@ public class GameManagerScript : MonoBehaviour
     public void RemovePlayer()
     {
         _playerCount--;
-        
+        Debug.Log("mon compteur de joueur" + _playerCount);
         if (_playerCount <= 0)
         {
             Instance._anotherDeath = true;
@@ -54,6 +55,7 @@ public class GameManagerScript : MonoBehaviour
 
     private static void Draw()
     {
+        _playerCount = 0;
         Debug.Log("Draw !");
         Time.timeScale = 0f;
         EndGameHandle.DrawScreen();
@@ -61,6 +63,7 @@ public class GameManagerScript : MonoBehaviour
 
     private static void Victory()
     {
+        _playerCount = 0;
         Debug.Log("victory !");
         Time.timeScale = 0f;
         EndGameHandle.VictoryScreen();

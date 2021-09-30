@@ -4,14 +4,37 @@ public class PlayerControllerScript : MonoBehaviour
 {
     [SerializeField] private CharacterControllerScript player1;
     [SerializeField] private CharacterControllerScript player2;
+  
 
     private bool _paused;
-    
+
+    private void Start()
+    {
+        if(Playmode.mymode == Playmode.Mode.mctsVmcts)
+        {
+            enabled = false;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        MovePlayer1();
-        MovePlayer2();
+        switch (Playmode.mymode)
+        {
+            case Playmode.Mode.PVP:
+                MovePlayer1();
+                MovePlayer2();
+                break;
+            case Playmode.Mode.PVR:
+                MovePlayer1();
+                break;
+            case Playmode.Mode.PVmcts:
+                MovePlayer1();
+                break;
+          
+            default:
+                break;
+        }
     }
 
     private void MovePlayer1()

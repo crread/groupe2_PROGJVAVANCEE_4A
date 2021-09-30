@@ -15,6 +15,10 @@ public class RandomControllerScript : MonoBehaviour
 
     private void Start()
     {
+        if (Playmode.mymode == Playmode.Mode.PVP)
+        {
+            enabled = false;
+        }
         _currentActionCooldown = actionCooldown;
         _currentStartCooldown = startCooldown;
     }
