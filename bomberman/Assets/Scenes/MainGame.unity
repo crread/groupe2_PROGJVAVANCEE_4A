@@ -19736,8 +19736,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8708779723585244774, guid: 3b5f5e0425e3259499e27edb1be55fb9, type: 3}
+      propertyPath: m_Interpolate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8708779723585244774, guid: 3b5f5e0425e3259499e27edb1be55fb9, type: 3}
       propertyPath: m_CollisionDetection
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b5f5e0425e3259499e27edb1be55fb9, type: 3}
