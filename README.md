@@ -1,1 +1,0 @@
-Package from Asset store for 3D models : PolygonStarter

@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 internal class SimulationStruct
 {
@@ -110,20 +108,6 @@ public class MctsScript : MonoBehaviour
 
     [SerializeField]
     private int minint = 10;
-
-    private void Start()
-    {
-        if (Playmode.mymode == Playmode.Mode.PVmcts)
-        {
-            enabled = true;
-            agentController.MctsIA = true;
-        }
-        else
-        {
-            enabled = false;
-        }
-        
-    }
 
     public char GetNextMove()
     {

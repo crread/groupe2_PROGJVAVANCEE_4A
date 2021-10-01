@@ -16,7 +16,7 @@ public class CharacterControllerScript : MonoBehaviour
 
     [SerializeField] private float bombCooldown;
 
-    public bool MctsIA { get; set; }
+    [SerializeField] private bool mctsIA;
 
     public float CurrentBombCooldown;
     private MctsScript mcts;
@@ -25,7 +25,7 @@ public class CharacterControllerScript : MonoBehaviour
     {
         GameManagerScript.AddPlayer();
 
-        if (MctsIA)
+        if (mctsIA)
         {
             mcts = GameObject.Find("GameManager").GetComponent<MctsScript>();
         }
@@ -33,7 +33,7 @@ public class CharacterControllerScript : MonoBehaviour
 
     private void Update()
     { 
-        if (MctsIA)
+        if (mctsIA)
         {
             switch (mcts.GetNextMove())
             {                                                                                                                                                           
