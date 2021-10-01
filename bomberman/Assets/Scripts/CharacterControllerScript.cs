@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using Scrips;
 using UnityEngine;
 
 public class CharacterControllerScript : MonoBehaviour
@@ -14,19 +16,50 @@ public class CharacterControllerScript : MonoBehaviour
 
     [SerializeField] private float bombCooldown;
 
-    private float _currentBombCooldown;
+    [SerializeField] private bool mctsIA;
+
+    public float CurrentBombCooldown;
+    private MctsScript mcts;
 
     private void Start()
     {
         GameManagerScript.AddPlayer();
+
+        if (mctsIA)
+        {
+            mcts = GameObject.Find("GameManager").GetComponent<MctsScript>();
+        }
     }
 
     private void Update()
-    {
-        if (_currentBombCooldown > 0)
+    { 
+        if (mctsIA)
         {
-            _currentBombCooldown -= Time.deltaTime;
-            if (_currentBombCooldown <= 0)
+            switch (mcts.GetNextMove())
+            {                                                                                                                                                           
+                case 'l':
+                    MoveLeft();
+                    break;
+                case 'r':
+                    MoveRight();
+                    break;
+                case 'u':
+                    MoveForward();
+                    break;
+                case 'd':
+                    MoveBackward();
+                    break;
+                case 'b':
+                    PlaceBomb();
+                    break;
+                
+            }
+        }
+        
+        if (CurrentBombCooldown > 0)
+        {
+            CurrentBombCooldown -= Time.deltaTime;
+            if (CurrentBombCooldown <= 0)
             {
                 UI_HUD.SetBombAvailable();
             }
@@ -59,8 +92,8 @@ public class CharacterControllerScript : MonoBehaviour
 
     public void PlaceBomb()
     {
-        if (_currentBombCooldown > 0) return;
-        _currentBombCooldown = bombCooldown;
+        if (CurrentBombCooldown > 0) return;
+        CurrentBombCooldown = bombCooldown;
         var position = transform.position;
         var bombPosition = new Vector3(Mathf.Round(position.x), 0, Mathf.Round(position.z));
         if (bombPool.BombPool

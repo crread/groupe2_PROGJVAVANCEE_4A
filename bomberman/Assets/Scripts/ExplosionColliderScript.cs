@@ -14,7 +14,7 @@ public class ExplosionColliderScript : MonoBehaviour
         {
             other.gameObject.SetActive(false);
         }
-        Debug.Log(other.gameObject.name);
+
         if (!other.gameObject.CompareTag("Bomb")) return;
         
         var bomb = other.gameObject.GetComponentInParent<BombScript>();
