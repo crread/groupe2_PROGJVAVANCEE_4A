@@ -16,7 +16,7 @@ public class CharacterControllerScript : MonoBehaviour
     //cooldown between placing 2 bombs
     [SerializeField] private float bombCooldown;
 
-    private float _currentBombCooldown;
+    public float CurrentBombCooldown { get; set; }
 
     private void Start()
     {
@@ -27,9 +27,9 @@ public class CharacterControllerScript : MonoBehaviour
     {
         
         //update bomb cooldown
-        if (_currentBombCooldown > 0)
+        if (CurrentBombCooldown > 0)
         {
-            _currentBombCooldown -= Time.deltaTime;
+            CurrentBombCooldown -= Time.deltaTime;
         }
     }
 
@@ -59,8 +59,8 @@ public class CharacterControllerScript : MonoBehaviour
 
     public void PlaceBomb()
     {
-        if (_currentBombCooldown > 0) return;
-        _currentBombCooldown = bombCooldown;
+        if (CurrentBombCooldown > 0) return;
+        CurrentBombCooldown = bombCooldown;
         var position = transform.position;
         //position the bomb at the center of the tile
         var bombPosition = new Vector3(Mathf.Round(position.x), 0, Mathf.Round(position.z));

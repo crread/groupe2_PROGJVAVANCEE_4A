@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerControllerScript : MonoBehaviour
@@ -31,9 +32,12 @@ public class PlayerControllerScript : MonoBehaviour
             case Playmode.Mode.PVmcts:
                 MovePlayer1();
                 break;
-          
-            default:
+            case Playmode.Mode.mctsVmcts:
+                MovePlayer1();
+                MovePlayer2();
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
